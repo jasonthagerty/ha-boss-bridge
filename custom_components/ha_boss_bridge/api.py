@@ -36,7 +36,9 @@ class AutomationsView(HomeAssistantView):
                 "Unauthorized access attempt to automations API from user %s",
                 request["hass_user"].name,
             )
-            return self.json({"error": "Unauthorized - admin access required"}, status_code=403)
+            return self.json(
+                {"error": "Unauthorized - admin access required"}, status_code=403
+            )
 
         try:
             automations = await _get_automations(hass)
@@ -50,7 +52,9 @@ class AutomationsView(HomeAssistantView):
             )
         except Exception as e:
             _LOGGER.exception("Failed to retrieve automations")
-            return self.json({"error": f"Failed to retrieve automations: {e}"}, status_code=500)
+            return self.json(
+                {"error": f"Failed to retrieve automations: {e}"}, status_code=500
+            )
 
 
 class ScenesView(HomeAssistantView):
@@ -73,7 +77,9 @@ class ScenesView(HomeAssistantView):
                 "Unauthorized access attempt to scenes API from user %s",
                 request["hass_user"].name,
             )
-            return self.json({"error": "Unauthorized - admin access required"}, status_code=403)
+            return self.json(
+                {"error": "Unauthorized - admin access required"}, status_code=403
+            )
 
         try:
             scenes = await _get_scenes(hass)
@@ -87,7 +93,9 @@ class ScenesView(HomeAssistantView):
             )
         except Exception as e:
             _LOGGER.exception("Failed to retrieve scenes")
-            return self.json({"error": f"Failed to retrieve scenes: {e}"}, status_code=500)
+            return self.json(
+                {"error": f"Failed to retrieve scenes: {e}"}, status_code=500
+            )
 
 
 class ScriptsView(HomeAssistantView):
@@ -110,7 +118,9 @@ class ScriptsView(HomeAssistantView):
                 "Unauthorized access attempt to scripts API from user %s",
                 request["hass_user"].name,
             )
-            return self.json({"error": "Unauthorized - admin access required"}, status_code=403)
+            return self.json(
+                {"error": "Unauthorized - admin access required"}, status_code=403
+            )
 
         try:
             scripts = await _get_scripts(hass)
@@ -124,7 +134,9 @@ class ScriptsView(HomeAssistantView):
             )
         except Exception as e:
             _LOGGER.exception("Failed to retrieve scripts")
-            return self.json({"error": f"Failed to retrieve scripts: {e}"}, status_code=500)
+            return self.json(
+                {"error": f"Failed to retrieve scripts: {e}"}, status_code=500
+            )
 
 
 async def _get_automations(hass: HomeAssistant) -> list[dict[str, Any]]:
@@ -172,7 +184,8 @@ async def _get_automations(hass: HomeAssistant) -> list[dict[str, Any]]:
             else:
                 # Fallback to state attributes (may be incomplete)
                 _LOGGER.warning(
-                    "Automation %s doesn't have raw_config, using state attributes", entity_id
+                    "Automation %s doesn't have raw_config, using state attributes",
+                    entity_id,
                 )
                 automation_data["trigger"] = state.attributes.get("trigger", [])
                 automation_data["condition"] = state.attributes.get("condition", [])
@@ -266,7 +279,10 @@ async def _get_scripts(hass: HomeAssistant) -> list[dict[str, Any]]:
                 script_data["sequence"] = raw_config.get("sequence", [])
             else:
                 # Fallback to state attributes
-                _LOGGER.warning("Script %s doesn't have raw_config, using state attributes", entity_id)
+                _LOGGER.warning(
+                    "Script %s doesn't have raw_config, using state attributes",
+                    entity_id,
+                )
                 script_data["sequence"] = state.attributes.get("sequence", [])
 
             scripts.append(script_data)
