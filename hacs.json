@@ -1,5 +1,4 @@
 {
   "name": "HA Boss Bridge",
-  "render_readme": true,
-  "ignore": "brands"
+  "render_readme": true
 }
