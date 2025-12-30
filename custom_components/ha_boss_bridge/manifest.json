@@ -1,0 +1,12 @@
+{
+  "domain": "ha_boss_bridge",
+  "name": "HA Boss Bridge",
+  "version": "1.0.0",
+  "documentation": "https://github.com/jasonthagerty/ha_boss/wiki/HA-Boss-Bridge",
+  "issue_tracker": "https://github.com/jasonthagerty/ha-boss-bridge/issues",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@jasonthagerty"],
+  "iot_class": "local_push",
+  "integration_type": "service"
+}
