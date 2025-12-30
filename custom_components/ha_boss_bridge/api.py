@@ -37,7 +37,8 @@ class AutomationsView(HomeAssistantView):
                 request["hass_user"].name,
             )
             return self.json(
-                {"error": "Unauthorized - admin access required"}, status_code=403
+                {"error": "Unauthorized - admin access required"},
+                status_code=403,
             )
 
         try:
@@ -53,7 +54,8 @@ class AutomationsView(HomeAssistantView):
         except Exception as e:
             _LOGGER.exception("Failed to retrieve automations")
             return self.json(
-                {"error": f"Failed to retrieve automations: {e}"}, status_code=500
+                {"error": f"Failed to retrieve automations: {e}"},
+                status_code=500,
             )
 
 
@@ -78,7 +80,8 @@ class ScenesView(HomeAssistantView):
                 request["hass_user"].name,
             )
             return self.json(
-                {"error": "Unauthorized - admin access required"}, status_code=403
+                {"error": "Unauthorized - admin access required"},
+                status_code=403,
             )
 
         try:
@@ -94,7 +97,8 @@ class ScenesView(HomeAssistantView):
         except Exception as e:
             _LOGGER.exception("Failed to retrieve scenes")
             return self.json(
-                {"error": f"Failed to retrieve scenes: {e}"}, status_code=500
+                {"error": f"Failed to retrieve scenes: {e}"},
+                status_code=500,
             )
 
 
@@ -119,7 +123,8 @@ class ScriptsView(HomeAssistantView):
                 request["hass_user"].name,
             )
             return self.json(
-                {"error": "Unauthorized - admin access required"}, status_code=403
+                {"error": "Unauthorized - admin access required"},
+                status_code=403,
             )
 
         try:
@@ -135,7 +140,8 @@ class ScriptsView(HomeAssistantView):
         except Exception as e:
             _LOGGER.exception("Failed to retrieve scripts")
             return self.json(
-                {"error": f"Failed to retrieve scripts: {e}"}, status_code=500
+                {"error": f"Failed to retrieve scripts: {e}"},
+                status_code=500,
             )
 
 
