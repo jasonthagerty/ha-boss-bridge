@@ -3,7 +3,7 @@
   "name": "HA Boss Bridge",
   "version": "1.1.0",
   "config_flow": true,
-  "documentation": "https://github.com/jasonthagerty/ha_boss/wiki/HA-Boss-Bridge",
+  "documentation": "https://github.com/jasonthagerty/ha-boss-bridge#readme",
   "issue_tracker": "https://github.com/jasonthagerty/ha-boss-bridge/issues",
   "requirements": [],
   "dependencies": [],

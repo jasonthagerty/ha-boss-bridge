@@ -15,9 +15,7 @@ from .const import DOMAIN
 STEP_USER_DATA_SCHEMA = vol.Schema({})
 
 
-async def validate_input(
-    hass: HomeAssistant, data: dict[str, Any]
-) -> dict[str, Any]:
+async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """Validate the user input allows us to connect.
 
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
@@ -31,18 +29,14 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> FlowResult:
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         """Handle the initial step."""
         # Check if already configured
         if self._async_current_entries():
             return self.async_abort(reason="already_configured")
 
         if user_input is None:
-            return self.async_show_form(
-                step_id="user", data_schema=STEP_USER_DATA_SCHEMA
-            )
+            return self.async_show_form(step_id="user", data_schema=STEP_USER_DATA_SCHEMA)
 
         errors = {}
 
