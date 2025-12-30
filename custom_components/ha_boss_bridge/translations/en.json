@@ -1,0 +1,17 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "HA Boss Bridge",
+        "description": "Set up HA Boss Bridge to expose automation, scene, and script configurations via REST API.\n\nNo configuration needed - click Submit to enable the integration.",
+        "data": {}
+      }
+    },
+    "error": {
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "HA Boss Bridge is already configured"
+    }
+  }
+}

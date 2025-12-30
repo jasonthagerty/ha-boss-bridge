@@ -1,7 +1,8 @@
 {
   "domain": "ha_boss_bridge",
   "name": "HA Boss Bridge",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "config_flow": true,
   "documentation": "https://github.com/jasonthagerty/ha_boss/wiki/HA-Boss-Bridge",
   "issue_tracker": "https://github.com/jasonthagerty/ha-boss-bridge/issues",
   "requirements": [],

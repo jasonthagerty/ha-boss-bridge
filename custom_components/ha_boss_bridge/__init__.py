@@ -6,17 +6,18 @@ automation, scene, and script configurations to external tools like HA Boss.
 
 import logging
 
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 
 from .api import AutomationsView, ScenesView, ScriptsView
-from .const import VERSION
+from .const import DOMAIN, VERSION
 
 _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Set up the HA Boss Bridge integration.
+    """Set up the HA Boss Bridge integration via YAML (legacy).
 
     Args:
         hass: Home Assistant instance
@@ -25,8 +26,49 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     Returns:
         True if setup succeeded
     """
-    _LOGGER.info("Setting up HA Boss Bridge v%s", VERSION)
+    # Support YAML configuration for backward compatibility
+    if DOMAIN in config:
+        _LOGGER.info("Setting up HA Boss Bridge v%s via YAML", VERSION)
+        await _register_endpoints(hass)
 
+    return True
+
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Set up HA Boss Bridge from a config entry (UI configuration).
+
+    Args:
+        hass: Home Assistant instance
+        entry: Config entry
+
+    Returns:
+        True if setup succeeded
+    """
+    _LOGGER.info("Setting up HA Boss Bridge v%s via UI", VERSION)
+    await _register_endpoints(hass)
+    return True
+
+
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Unload a config entry.
+
+    Args:
+        hass: Home Assistant instance
+        entry: Config entry
+
+    Returns:
+        True if unload succeeded
+    """
+    _LOGGER.info("Unloading HA Boss Bridge")
+    return True
+
+
+async def _register_endpoints(hass: HomeAssistant) -> None:
+    """Register API endpoints.
+
+    Args:
+        hass: Home Assistant instance
+    """
     # Register API endpoints
     hass.http.register_view(AutomationsView)
     hass.http.register_view(ScenesView)
@@ -36,5 +78,3 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     _LOGGER.debug("  - %s", AutomationsView.url)
     _LOGGER.debug("  - %s", ScenesView.url)
     _LOGGER.debug("  - %s", ScriptsView.url)
-
-    return True

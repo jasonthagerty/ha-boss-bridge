@@ -39,16 +39,39 @@ GET /api/ha_boss_bridge/scripts      → Script sequences
 5. Category: "Integration"
 6. Click "Install"
 7. Restart Home Assistant
+8. Go to Settings → Devices & Services → Add Integration
+9. Search for "HA Boss Bridge" and click to add
 
 ### Manual Installation
 
 1. Download the [latest release](https://github.com/jasonthagerty/ha-boss-bridge/releases)
 2. Extract to `config/custom_components/ha_boss_bridge/`
 3. Restart Home Assistant
+4. Go to Settings → Devices & Services → Add Integration
+5. Search for "HA Boss Bridge" and click to add
 
 ## Configuration
 
-**No configuration needed!** The integration automatically registers API endpoints on startup.
+### UI Configuration (Recommended - v1.1.0+)
+
+After installation, simply add the integration via the Home Assistant UI:
+
+1. Navigate to **Settings** → **Devices & Services**
+2. Click **+ Add Integration**
+3. Search for **"HA Boss Bridge"**
+4. Click to add (no configuration needed!)
+5. API endpoints are immediately available
+
+### YAML Configuration (Legacy)
+
+For backward compatibility, you can also configure via `configuration.yaml`:
+
+```yaml
+# configuration.yaml
+ha_boss_bridge:
+```
+
+Then restart Home Assistant.
 
 ## Usage
 
