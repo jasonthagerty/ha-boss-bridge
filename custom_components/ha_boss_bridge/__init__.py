@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 
 from .api import AutomationsView, ScenesView, ScriptsView
-from .const import DOMAIN, VERSION
+from .const import VERSION
 
 _LOGGER = logging.getLogger(__name__)
 
