@@ -154,7 +154,7 @@ async def _get_automations(hass: HomeAssistant) -> list[dict[str, Any]]:
     Returns:
         List of automation dictionaries with full configs
     """
-    automations = []
+    automations: list[dict[str, Any]] = []
 
     # Get automation component
     automation_component = hass.data.get(AUTOMATION_DOMAIN)
@@ -224,7 +224,7 @@ async def _get_scenes(hass: HomeAssistant) -> list[dict[str, Any]]:
     Returns:
         List of scene dictionaries with configurations
     """
-    scenes = []
+    scenes: list[dict[str, Any]] = []
 
     # Get all scene entities from states
     for state in hass.states.async_all(SCENE_DOMAIN):
@@ -254,7 +254,7 @@ async def _get_scripts(hass: HomeAssistant) -> list[dict[str, Any]]:
     Returns:
         List of script dictionaries with configurations
     """
-    scripts = []
+    scripts: list[dict[str, Any]] = []
 
     # Get script component
     script_component = hass.data.get(SCRIPT_DOMAIN)
@@ -312,7 +312,7 @@ def _get_instance_id(hass: HomeAssistant) -> str:
     """
     # Use Home Assistant's instance ID if available
     if hasattr(hass.data, "instance_id"):
-        return hass.data.instance_id
+        return str(hass.data.instance_id)
 
     # Fallback to using the location name
     return hass.config.location_name or "default"
